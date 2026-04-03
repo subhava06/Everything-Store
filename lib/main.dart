@@ -1,5 +1,8 @@
 import 'package:ecommerce_app/constants/global_variables.dart';
+import 'package:ecommerce_app/router.dart';
 import 'package:flutter/material.dart';
+
+import 'features/auth/screens/auth_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,6 +31,8 @@ class MyApp extends StatelessWidget {
                 ),
               ),
       ),
+      // for routing between pages
+      onGenerateRoute: (settings) => generateRoute(settings) ,
       home: Scaffold(
         appBar: AppBar(
           title: Center(child: Text('Everything store')),
@@ -39,9 +44,15 @@ class MyApp extends StatelessWidget {
                 child: Text('Homepage'),
               ),
 
-              ElevatedButton(
-                  onPressed: () {},
-                  child: Text('Click!'),
+              Builder(
+                builder: (context) {
+                  return ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, AuthScreen.routeName);
+                      },
+                      child: Text('Click!'),
+                  );
+                }
               ),
             ],
           ),
