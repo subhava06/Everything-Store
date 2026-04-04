@@ -1,7 +1,7 @@
 import 'package:ecommerce_app/constants/global_variables.dart';
 import 'package:flutter/material.dart';
 
-enum Auth { //kepp track of the radio button we are on
+enum Auth { //keep track of the radio button we are on
   signin,
   signup,
 }
@@ -15,7 +15,17 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  Auth _auth = Auth.signup;
+  Auth _auth = Auth.signup; //initialize the enum
+  final _signUpFormKey = GlobalKey<FormState>();
+  final _signInFormKey = GlobalKey<FormState>();
+
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+
+
+
+
   @override
   Widget build(BuildContext context) {
   //  Navigator.pushNamed(context, '/');
@@ -34,7 +44,8 @@ class _AuthScreenState extends State<AuthScreen> {
                    fontWeight: FontWeight.w500,
                  ),
                  ),
-                 
+
+                 //for sign up
                  ListTile( // create acc and radio button
                    title: Text('Create account',
                      style: TextStyle(
@@ -44,8 +55,41 @@ class _AuthScreenState extends State<AuthScreen> {
                    leading: Radio(
                      activeColor: GlobalVariables.secondaryColor,
                      value: Auth.signup,
-                     groupValue: ,
+                     groupValue: _auth,
+                     onChanged: (Auth? val){
+                       setState(() {
+                         _auth = val!;
+                       });
+                     },
                    ),
+                 ),
+                 if(_auth == Auth.signup)
+                   Form(
+                     key: _signUpFormKey,
+                     child: Column(
+                       //name
+
+                     ),
+                   ),
+
+                 //for sign in
+                 ListTile( // create acc and radio button
+                   title: Text('Sign-In.',
+                     style: TextStyle(
+                       fontWeight: FontWeight.bold,
+                     ),
+                   ),
+                   leading: Radio(
+                     activeColor: GlobalVariables.secondaryColor,
+                     value: Auth.signin,
+                     groupValue: _auth,
+                     onChanged: (Auth? val){
+                       setState(() {
+                         _auth = val!;
+                       });
+                     },
+                   ),
+                 ),
                ],
              ),
            ),
