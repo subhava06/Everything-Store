@@ -32,31 +32,9 @@ class MyApp extends StatelessWidget {
               ),
       ),
       // for routing between pages
-      onGenerateRoute: (settings) => generateRoute(settings) ,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Center(child: Text('Everything store')),
-        ),
+      onGenerateRoute: generateRoute,
+      initialRoute: AuthScreen.routeName,
 
-          body:  Column(
-            children: [
-              Center (
-                child: Text('Homepage'),
-              ),
-
-              Builder(
-                builder: (context) {
-                  return ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, AuthScreen.routeName);
-                      },
-                      child: Text('Click!'),
-                  );
-                }
-              ),
-            ],
-          ),
-      ),
     );
   }
 }
